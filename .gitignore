@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+Test_Campaigns/Demo_Campaign/test-artifacts/refiner/
+Test_Campaigns/Demo_Campaign/test-artifacts/reports/junit.xml
+.DS_Store
+

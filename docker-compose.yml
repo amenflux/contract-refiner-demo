@@ -1,0 +1,18 @@
+services:
+  pet-store:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: contract-refiner-demo-pet-store:latest
+    container_name: contract-refiner-demo-pet-store
+    ports:
+      - "8001:8001"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - "python -c \"import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8001/pets', timeout=2).status == 200 else 1)\""
+      interval: 3s
+      timeout: 2s
+      retries: 20
+      start_period: 2s
+    restart: unless-stopped

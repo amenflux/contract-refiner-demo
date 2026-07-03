@@ -1,0 +1,45 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Pet Store API",
+    "version": "1.0.0",
+    "description": "Sample API used as the demo target for the contract refiner. Small enough to be readable end-to-end."
+  },
+  "servers": [
+    { "url": "https://demo-petstore.example.com" }
+  ],
+  "paths": {
+    "/pets": {
+      "get": {
+        "summary": "List pets",
+        "responses": {
+          "200": { "description": "list of pets" }
+        }
+      },
+      "post": {
+        "summary": "Create a pet",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object" } } } },
+        "responses": {
+          "201": { "description": "pet created" },
+          "400": { "description": "invalid input" }
+        }
+      }
+    },
+    "/pets/{petId}": {
+      "get": {
+        "parameters": [{ "name": "petId", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": {
+          "200": { "description": "single pet" },
+          "404": { "description": "not found" }
+        }
+      },
+      "put": {
+        "parameters": [{ "name": "petId", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": {
+          "200": { "description": "updated" },
+          "400": { "description": "invalid" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "info": {
+    "contract_notes": "Extension overlay declaring per-endpoint contract constraints the base spec cannot express: required response fields, required error headers, idempotency, minItems, allowed enum values, etc."
+  },
+  "paths": {
+    "/pets": {
+      "get": {
+        "x-required-response-fields": ["id", "name"]
+      },
+      "post": {
+        "x-required-response-fields": ["id", "created_at"],
+        "x-idempotency-key-header": "Idempotency-Key"
+      }
+    },
+    "/pets/{petId}": {
+      "get": {
+        "x-required-response-fields": ["id", "name", "species"]
+      },
+      "put": {
+        "x-required-response-headers": ["X-Request-Id"]
+      }
+    }
+  },
+  "components": {
+    "x-allowed-species": ["cat", "dog", "rabbit", "bird"]
+  }
+}
