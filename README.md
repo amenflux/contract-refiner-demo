@@ -43,20 +43,33 @@ iteration-appropriate patches so the pipeline runs without secrets.
 Switch to the real path by setting the secret `DEMO_LLM_MODE=real` (plus
 `GENAI_BASE_URL` and `GENAI_ACCESS_TOKEN`); the default is `demo`.
 
-## How to run
+## How to inspect a run
+
+Every past run of this pipeline is public. Anyone can read the full log,
+inspect each iteration of the Refiner loop, and download the artifacts
+without a GitHub account.
 
 **From the Actions tab (fastest):**
 1. Open the [Actions tab](../../actions).
-2. Select **"PR — Contract Refiner (click 'Run workflow' to launch the demo)"**.
-3. Click **Run workflow**, optionally adjust `max_iterations`, click the
-   green button.
+2. Select **"PR — Contract Refiner"** in the left sidebar.
+3. Click the most recent green run at the top of the list.
+4. Read any step to see its log — the 15-second DEMO banner, the real
+   Docker Compose build of the FastAPI Pet Store, the initial pytest that
+   generates real JUnit, and the Refiner loop iterating toward convergence.
+5. The **Refiner verdict** table appears in the run summary; the applied
+   patches and per-iteration JSON records are in the uploaded artifacts.
 
-**As a PR (full experience):**
-1. Fork this repo.
-2. On a new branch, edit anything under `spec/**`, `app/**`, or `tests/**`.
-3. Open a PR back to `main`. The workflow fires, the bot commits the
-   Refiner's proposed edits to your PR branch, and posts a summary
-   comment on the PR.
+Triggering a fresh run manually requires write access to this repository —
+which by GitHub's security policy is limited to me. If you would like to
+see a fresh execution, open an issue or reach out and I will kick one off.
+
+**Fork it and run it yourself (full experience):**
+1. Fork this repo to your own GitHub account.
+2. On your fork, on a new branch, edit anything under `spec/**`, `app/**`,
+   or `tests/**`.
+3. Open a PR back to your fork's `main`. The workflow fires on the PR,
+   the bot commits the Refiner's proposed edits to your PR branch, and it
+   posts a summary comment on the PR.
 
 **Locally:**
 ```bash

@@ -1,4 +1,4 @@
-name: PR — Contract Refiner (click 'Run workflow' to launch the demo)
+name: PR — Contract Refiner
 
 # PR-triggered pipeline that drives an iterative agent loop against the
 # OpenAPI contract-extension file. On PR (paths: spec/**) or manual dispatch:
